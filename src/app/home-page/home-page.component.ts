@@ -41,7 +41,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
       size: { width: 100, height: 50 },
       attrs: {
         label: {
-          text: 'Hello World'
+          text: 'Объект 1'
         }
       }
     });
