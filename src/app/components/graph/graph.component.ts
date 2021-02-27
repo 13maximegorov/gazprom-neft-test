@@ -83,9 +83,6 @@ export class GraphComponent implements OnInit, AfterViewInit {
       if (index !== rectangles.length - 1) {
         link.source(item);
         link.target(rectangles[index + 1]);
-      } else {
-        link.source(rectangles[rectangles.length - 1]);
-        link.target(rectangles[0]);
       }
 
       link.addTo(this.graph);
