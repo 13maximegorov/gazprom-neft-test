@@ -5,22 +5,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MaterialModule} from './material/material.module';
+import {NgxEchartsModule} from 'ngx-echarts';
+
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { HomePageComponent } from './home-page/home-page.component';
-
-import {MaterialModule} from './material/material.module';
+import { DialogChartComponent } from './components/dialog-chart/dialog-chart.component';
+import { GraphComponent } from './components/graph/graph.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    HomePageComponent
+    HomePageComponent,
+    DialogChartComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
