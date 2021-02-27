@@ -36,7 +36,7 @@ export class DialogChartComponent implements OnInit {
 
     const chartOption = {
       title: {
-        text: 'Добыча нефти'
+        text: 'Тестовый график'
       },
       tooltip: {
         trigger: 'axis'

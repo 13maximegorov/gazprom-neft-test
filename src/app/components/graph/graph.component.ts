@@ -47,7 +47,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
     const scroller = this.scroller = new ui.PaperScroller({
       paper,
-      autoResizePaper: true,
+      autoResizePaper: false,
       cursor: 'grab'
     });
 
@@ -62,8 +62,8 @@ export class GraphComponent implements OnInit, AfterViewInit {
           y: item.position.y
         },
         size: {
-          width: 100,
-          height: 50
+          width: 150,
+          height: 70
         },
         attrs: {
           label: {
