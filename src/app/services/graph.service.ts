@@ -17,8 +17,8 @@ export class GraphService {
     {
       id: 'j_1',
       position: {
-        x: 100,
-        y: 100
+        x: 0,
+        y: 0
       },
       text: 'Объект 1'
     },
@@ -26,14 +26,14 @@ export class GraphService {
       id: 'j_2',
       position: {
         x: 300,
-        y: 110
+        y: -50
       },
       text: 'Объект 2'
     },
     {
       id: 'j_3',
       position: {
-        x: 180,
+        x: 100,
         y: 300
       },
       text: 'Объект 3'
@@ -41,8 +41,8 @@ export class GraphService {
     {
       id: 'j_4',
       position: {
-        x: 400,
-        y: 230
+        x: 600,
+        y: 50
       },
       text: 'Объект 4'
     },
@@ -50,15 +50,15 @@ export class GraphService {
       id: 'j_5',
       position: {
         x: 600,
-        y: 270
+        y: 300
       },
       text: 'Объект 5'
     },
     {
       id: 'j_6',
       position: {
-        x: 370,
-        y: 400
+        x: 300,
+        y: 500
       },
       text: 'Объект 6'
     },

@@ -1,7 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { EChartsOption } from 'echarts';
-import {ChartService} from '../../services/chart.service';
 
 @Component({
   selector: 'app-dialog-chart',
@@ -13,19 +11,18 @@ export class DialogChartComponent implements OnInit {
   chartOption = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private chartService: ChartService
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
-    this.chartInit(this.data.objectID);
+    this.chartInit();
   }
 
-  chartInit(objectID: string): void {
+  chartInit(): void {
     const legendData = [];
     const series = [];
 
-    this.chartService.getChartByObjectID(objectID).series.forEach(item => {
+    this.data.seriesChart.forEach(item => {
       legendData.push(item.name);
       series.push({
         name: item.name,

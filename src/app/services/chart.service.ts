@@ -86,6 +86,11 @@ export class ChartService {
           data: [94, 96, 100, 112, 125, 110, 100, 110, 95, 96, 99, 91]
         }
       ]
+    },
+    {
+      id: 6,
+      objectID: 'j_6',
+      series: []
     }
   ];
 

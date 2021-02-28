@@ -1,8 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {dia, shapes, ui} from '@clientio/rappid/index';
 import {GraphService} from '../../services/graph.service';
-import {MatDialog} from '@angular/material/dialog';
+import {ChartService} from '../../services/chart.service';
 import {DialogChartComponent} from '../dialog-chart/dialog-chart.component';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-graph',
@@ -18,7 +20,9 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
   constructor(
     private graphService: GraphService,
-    public dialog: MatDialog
+    private chartService: ChartService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +42,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
     const paper = this.paper = new dia.Paper({
       model: graph,
       background: {
-        color: '#F8F9FA',
+        color: 'transparent',
       },
       frozen: true,
       async: true,
@@ -47,7 +51,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
     const scroller = this.scroller = new ui.PaperScroller({
       paper,
-      autoResizePaper: false,
+      autoResizePaper: true,
       cursor: 'grab'
     });
 
@@ -66,8 +70,17 @@ export class GraphComponent implements OnInit, AfterViewInit {
           height: 70
         },
         attrs: {
+          body: {
+            fill: '#0090ff',
+            rx: 20,
+            ry: 20,
+            strokeWidth: 0
+          },
           label: {
-            text: item.text
+            text: item.text,
+            fill: '#FFFFFF',
+            fontSize: 16,
+            fontVariant: 'small-caps'
           }
         }
       });
@@ -94,12 +107,26 @@ export class GraphComponent implements OnInit, AfterViewInit {
   }
 
   openDialogChart(objectID: string): void {
-    this.dialog.open(DialogChartComponent, {
-      minWidth: '300px',
-      width: '1000px',
-      data: {
-        objectID
-      }
+    const seriesChart = this.chartService.getChartByObjectID(objectID).series;
+
+    if (seriesChart.length) {
+      this.dialog.open(DialogChartComponent, {
+        minWidth: '300px',
+        width: '1000px',
+        data: {
+          seriesChart
+        }
+      });
+    } else {
+      this.openSnackBar('У данного объекта нет данных.');
+    }
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Закрыть', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top'
     });
   }
 }
